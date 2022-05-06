@@ -1,3 +1,7 @@
+import { line1 } from "./keys";
+
+
+
 const body = document.body;
 
 const container = document.createElement('div');
@@ -15,9 +19,21 @@ displayWrapper.append(display);
 
 const keyboard = document.createElement('section');
 keyboard.classList.add('keyboard');
-
-
 container.append(keyboard);
+
+const keyboardLine = document.createElement('div');
+keyboardLine.classList.add('keyboard__line');
+keyboard.append(keyboardLine);
+
+for (const { key, value } of line1) {
+    const keyboardKey = document.createElement('button');
+    keyboardKey.classList.add('keyboard__key');
+    keyboardKey.setAttribute('data-key', key);
+    keyboardKey.textContent = value;
+    keyboardLine.append(keyboardKey);
+}
+
+
 
 const text = document.createElement('div');
 text.classList.add('description');
@@ -28,22 +44,7 @@ container.append(text);
 /*    
 
 
-    <div class="keyboard__line">
-        <button class="keyboard__key" type="button" data-key="Backquote">`</button>
-        <button class="keyboard__key" type="button" data-key="1">1</button>
-        <button class="keyboard__key" type="button" data-key="2">2</button>
-        <button class="keyboard__key" type="button" data-key="3">3</button>
-        <button class="keyboard__key" type="button" data-key="4">4</button>
-        <button class="keyboard__key" type="button" data-key="5">5</button>
-        <button class="keyboard__key" type="button" data-key="6">6</button>
-        <button class="keyboard__key" type="button" data-key="7">7</button>
-        <button class="keyboard__key" type="button" data-key="8">8</button>
-        <button class="keyboard__key" type="button" data-key="9">9</button>
-        <button class="keyboard__key" type="button" data-key="0">0</button>
-        <button class="keyboard__key" type="button" data-key="Minus">-</button>
-        <button class="keyboard__key" type="button" data-key="Equal">=</button>
-        <button class="keyboard__key keyboard__key--grow" type="button" data-key="Backspace">Backspace</button>
-    </div>
+
     <div class="keyboard__line">
         <button class="keyboard__key keyboard__key--grow" type="button" data-key="Tab">Tab</button>
         <button class="keyboard__key" type="button" data-key="q">q</button>
