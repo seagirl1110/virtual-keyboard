@@ -68,6 +68,14 @@ body {
   color: #fff;
   outline: none;
   border: none;
+  transition: all 0.3ms;
+}
+.keyboard__key:hover {
+  background: #4d6398;
+  cursor: pointer;
+}
+.keyboard__key:active {
+  box-shadow: inset 3px 3px 3px #334266;
 }
 .keyboard__key--grow {
   flex-grow: 1;
