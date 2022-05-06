@@ -90,3 +90,14 @@ body {
         }
     }
 }
+
+.description {
+    text-align: center;
+    margin-top: 20px;
+
+    // .description__text
+
+    &__text {
+        margin: 5px;
+    }
+}
