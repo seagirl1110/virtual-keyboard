@@ -1,5 +1,22 @@
 import { keysColl } from "./keys";
 
+document.addEventListener('keypress', (evt) => {
+    evt.preventDefault();
+    console.log(evt);
+    const char = evt.key;
+    switch (char) {
+        case 'Enter':
+            print('\n');
+            break;
+
+        // case 'Backspace':
+        //     print('display.textContent');
+        //     break
+
+        default: print(char);
+    }
+})
+
 const body = document.body;
 
 const container = document.createElement('div');
@@ -13,6 +30,10 @@ container.append(displayWrapper);
 
 const display = document.createElement('textarea');
 display.classList.add('display');
+// display.addEventListener('input', (evt) => {
+//     evt.preventDefault()
+//     console.log(evt)
+// })
 displayWrapper.append(display);
 
 const keyboard = document.createElement('section');
@@ -34,6 +55,10 @@ for (const line of keysColl) {
             keyboardKey.classList.add(item.class);
         }
         keyboardLine.append(keyboardKey);
+
+        keyboardKey.addEventListener('click', () => {
+            print(keyboardKey.textContent)
+        })
     }
 }
 
@@ -42,3 +67,7 @@ text.classList.add('description');
 text.innerHTML = `<p class="description__text">Клавиатура создана в операционной системе Windows</p>
     <p class="description__text">Для переключения языка комбинация: левые ctrl + shift</p>`
 container.append(text);
+
+function print(char) {
+    display.textContent += char;
+}
