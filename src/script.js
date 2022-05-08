@@ -1,13 +1,18 @@
 import { keysColl } from "./keys";
 
-let upper = true;
+let langRus = false;
+let capslock = false;
 
-document.addEventListener('keypress', (evt) => {
+document.addEventListener('keydown', (evt) => {
     evt.preventDefault();
     console.log(evt);
+    console.log(evt.code);
+
     const char = evt.key;
-    if (char.shiftKey === true) {
-        char = char.toUpperCase;
+
+    if (evt.key === 'Shift' && evt.ctrlKey) {
+        langRus = !langRus;
+        createKeys()
     }
 
     print(char);
@@ -38,8 +43,11 @@ container.append(keyboard);
 
 createKeys();
 
-function createKeys(upper = false) {
-    console.log(upper)
+function createKeys(lang = langRus, upper = capslock) {
+
+    console.log(`capslock ${capslock}`)
+    console.log(`lang ${lang}`)
+
     keyboard.innerHTML = '';
 
     for (const line of keysColl) {
@@ -50,20 +58,27 @@ function createKeys(upper = false) {
         for (const item of line) {
             const keyboardKey = document.createElement('button');
             keyboardKey.classList.add('keyboard__key');
-            keyboardKey.setAttribute('data-key', item.key);
-            if (upper) {
-                if (item.valueUpper) {
-                    keyboardKey.textContent = item.valueUpper;
-                } else {
-                    keyboardKey.textContent = item.value;
+            let value = item.value;
+            if (upper && lang) {
+                if (item.valueUpperRus) {
+                    value = item.valueUpperRus;
                 }
-            } else {
-                keyboardKey.textContent = item.value;
+            } else if (upper) {
+                if (item.valueUpper) {
+                    value = item.valueUpper;
+                }
+            } else if (lang) {
+                if (item.valueRus) {
+                    value = item.valueRus;
+                }
             }
+
+            keyboardKey.textContent = value;
 
             if (item.class) {
                 keyboardKey.classList.add(item.class);
             }
+
             keyboardLine.append(keyboardKey);
 
             keyboardKey.addEventListener('click', () => {
@@ -77,7 +92,7 @@ function createKeys(upper = false) {
 const text = document.createElement('div');
 text.classList.add('description');
 text.innerHTML = `<p class="description__text">Клавиатура создана в операционной системе Windows</p>
-    <p class="description__text">Для переключения языка комбинация: левые ctrl + shift</p>`
+    <p class="description__text">Для переключения языка комбинация: ctrl + shift</p>`
 container.append(text);
 
 function print(char) {
@@ -97,8 +112,8 @@ function print(char) {
         //     break;
 
         case 'CapsLock':
-            createKeys(upper)
-            upper = !upper;
+            capslock = !capslock;
+            createKeys()
             break;
 
         case 'Enter':
