@@ -1,7 +1,7 @@
 import { createKeys } from "./create-keys";
 import { print } from "./print";
 
-let langRus = false;
+let langRus = JSON.parse(localStorage.getItem('lng')) || false;
 
 const body = document.body;
 
