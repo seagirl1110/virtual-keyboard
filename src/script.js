@@ -1,22 +1,7 @@
-import { keysColl } from "./keys";
+import { createKeys } from "./create-keys";
+import { print } from "./print";
 
 let langRus = false;
-let capslock = false;
-
-document.addEventListener('keydown', (evt) => {
-    evt.preventDefault();
-    console.log(evt);
-    console.log(evt.code);
-
-    const char = evt.key;
-
-    if (evt.key === 'Shift' && evt.ctrlKey) {
-        langRus = !langRus;
-        createKeys()
-    }
-
-    print(char);
-})
 
 const body = document.body;
 
@@ -43,83 +28,24 @@ container.append(keyboard);
 
 createKeys();
 
-function createKeys(lang = langRus, upper = capslock) {
-
-    console.log(`capslock ${capslock}`)
-    console.log(`lang ${lang}`)
-
-    keyboard.innerHTML = '';
-
-    for (const line of keysColl) {
-        const keyboardLine = document.createElement('div');
-        keyboardLine.classList.add('keyboard__line');
-        keyboard.append(keyboardLine);
-
-        for (const item of line) {
-            const keyboardKey = document.createElement('button');
-            keyboardKey.classList.add('keyboard__key');
-            let value = item.value;
-            if (upper && lang) {
-                if (item.valueUpperRus) {
-                    value = item.valueUpperRus;
-                }
-            } else if (upper) {
-                if (item.valueUpper) {
-                    value = item.valueUpper;
-                }
-            } else if (lang) {
-                if (item.valueRus) {
-                    value = item.valueRus;
-                }
-            }
-
-            keyboardKey.textContent = value;
-
-            if (item.class) {
-                keyboardKey.classList.add(item.class);
-            }
-
-            keyboardLine.append(keyboardKey);
-
-            keyboardKey.addEventListener('click', () => {
-                print(keyboardKey.textContent)
-            })
-        }
-    }
-}
-
-
 const text = document.createElement('div');
 text.classList.add('description');
 text.innerHTML = `<p class="description__text">Клавиатура создана в операционной системе Windows</p>
     <p class="description__text">Для переключения языка комбинация: ctrl + shift</p>`
 container.append(text);
 
-function print(char) {
+document.addEventListener('keydown', (evt) => {
+    evt.preventDefault();
+    console.log(evt);
+    console.log(evt.code);
 
-    switch (char) {
-
-        // case 'Backspace':
-        //     display.textContent = ;
-        //     break
-
-        case 'Tab':
-            display.textContent += '    ';
-            break;
-
-        // case 'Delete':
-        //     display.textContent +=;
-        //     break;
-
-        case 'CapsLock':
-            capslock = !capslock;
-            createKeys()
-            break;
-
-        case 'Enter':
-            display.textContent += '\n';
-            break;
-
-        default: display.textContent += char;;
+    if (evt.key === 'Shift' && evt.ctrlKey) {
+        langRus = !langRus;
+        createKeys()
+    } else {
+        const char = evt.key;
+        print(char);
     }
-}
+})
+
+export { display, keyboard, langRus }
