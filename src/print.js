@@ -28,8 +28,18 @@ const print = (char) => {
             display.textContent += '\n';
             break;
 
+        // case 'Shift':
+        //     break;
+
+        case 'Ctrl':
+        case 'Control':
+        case 'Win':
+        case "Meta":
+        case 'Alt':
+            break;
+
         default: display.textContent += char;;
     }
 }
 
-export {capslock, print}
+export { capslock, print }

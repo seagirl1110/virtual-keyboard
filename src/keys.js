@@ -1,6 +1,6 @@
 const keysColl = [
     [
-        { code: 'Backquote', value: '`' },
+        { code: 'Backquote', value: '`', valueRus: 'ё', valueUpperRus: 'Ё' },
         { code: '1', value: 1 },
         { code: '2', value: 2 },
         { code: '3', value: 3 },
