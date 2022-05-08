@@ -6,8 +6,6 @@ const createKeys = (lang = langRus, upper = capslock) => {
 
     localStorage.setItem('lng', JSON.stringify(lang));
 
-    console.log(`lang ${lang}`)
-
     keyboard.innerHTML = '';
 
     for (const line of keysColl) {
@@ -33,7 +31,6 @@ const createKeys = (lang = langRus, upper = capslock) => {
                     value = item.valueRus;
                 }
             }
-             console.log(value)
 
             keyboardKey.textContent = value;
 
@@ -52,7 +49,6 @@ const createKeys = (lang = langRus, upper = capslock) => {
 
 window.addEventListener('load', () => {
     const lang = JSON.parse(localStorage.getItem('lng'));
-    console.log(`localstorage ${lang}`)
     createKeys(lang)
 })
 
