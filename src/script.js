@@ -6,6 +6,7 @@ import { hightlightKeys, notHightlightKeys } from './highlight-keys';
 
 let capslock = false;
 let langRus = JSON.parse(localStorage.getItem('lng')) || false;
+let shift = false;
 
 const { body } = document;
 
@@ -20,10 +21,6 @@ container.append(displayWrapper);
 
 const display = document.createElement('textarea');
 display.classList.add('display');
-// display.addEventListener('input', (evt) => {
-//     evt.preventDefault()
-//     console.log(evt)
-// })
 displayWrapper.append(display);
 
 const keyboard = document.createElement('section');
@@ -47,13 +44,16 @@ document.addEventListener('keydown', (evt) => {
 
     if ((evt.key === 'Shift' && evt.ctrlKey) || (evt.key === 'Control' && evt.shiftKey)) {
       langRus = !langRus;
-      createKeys(keysColl, keyboard, langRus, capslock, display);
+      createKeys(keysColl, keyboard, langRus, capslock, display, shift);
+    } else if (evt.shiftKey) {
+      shift = true;
+      createKeys(keysColl, keyboard, langRus, capslock, display, shift);
     } else {
       const char = evt.key;
       const { isNeedRender, cl } = printKey(display, char, capslock);
       capslock = cl;
       if (isNeedRender) {
-        createKeys(keysColl, keyboard, langRus, capslock, display);
+        createKeys(keysColl, keyboard, langRus, capslock, display, shift);
       }
     }
   }
@@ -66,10 +66,15 @@ document.addEventListener('keyup', (evt) => {
     if (evt.code !== 'CapsLock' || !capslock) {
       notHightlightKeys(item);
     }
+
+    if (evt.code === 'Shift') {
+      shift = false;
+      createKeys(keysColl, keyboard, langRus, capslock, display, shift);
+    }
   }
 });
 
 window.addEventListener('load', () => {
   const lang = JSON.parse(localStorage.getItem('lng'));
-  createKeys(keysColl, keyboard, lang, capslock, display);
+  createKeys(keysColl, keyboard, lang, capslock, display, shift);
 });

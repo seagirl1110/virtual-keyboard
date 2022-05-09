@@ -6,7 +6,8 @@
   "scripts": {
     "start": "set NODE_ENV=development && webpack serve",
     "build": "set NODE_ENV=production && webpack",
-    "lint": "eslint --ext .js --fix .",
+    "lint": "eslint --ext .js .",
+    "lintfix": "eslint --ext .js --fix .",
     "deploy": "gh-pages -d dist"
   },
   "repository": {
