@@ -6,6 +6,7 @@ const printKey = (d, char, capslock) => {
 
   switch (char) {
     case 'Backspace':
+      display.focus();
       if (start > 0) {
         display.value = display.value.slice(0, start - 1) + display.value.slice(start);
         display.selectionStart = start - 1;
@@ -19,6 +20,7 @@ const printKey = (d, char, capslock) => {
 
     case 'Del':
     case 'Delete':
+      display.focus();
       if (start < display.value.length) {
         display.value = display.value.slice(0, start) + display.value.slice(start + 1);
         display.selectionStart = start;
@@ -42,7 +44,9 @@ const printKey = (d, char, capslock) => {
     case 'Control':
     case 'Win':
     case 'Meta':
+    case 'MetaRight':
     case 'Alt':
+    case 'AltGraph':
       break;
 
     default: display.value += char;

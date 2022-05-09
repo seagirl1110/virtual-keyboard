@@ -2,6 +2,7 @@ import './style.scss';
 import keysColl from './keys';
 import createKeys from './create-keys';
 import printKey from './print-key';
+import { hightlightKeys, notHightlightKeys } from './highlight-keys';
 
 let capslock = false;
 let langRus = JSON.parse(localStorage.getItem('lng')) || false;
@@ -38,6 +39,13 @@ container.append(text);
 document.addEventListener('keydown', (evt) => {
   evt.preventDefault();
 
+  if (keyboard.querySelector(`[data-code=${evt.code}]`)) {
+    setTimeout(() => {
+      const item = keyboard.querySelector(`[data-code=${evt.code}]`);
+      hightlightKeys(item);
+    })
+  }
+
   if ((evt.key === 'Shift' && evt.ctrlKey) || (evt.key === 'Control' && evt.shiftKey)) {
     langRus = !langRus;
     createKeys(keysColl, keyboard, langRus, capslock, display);
@@ -50,6 +58,16 @@ document.addEventListener('keydown', (evt) => {
     }
   }
 });
+
+document.addEventListener('keyup', (evt) => {
+  if (keyboard.querySelector(`[data-code=${evt.code}]`)) {
+    const item = keyboard.querySelector(`[data-code=${evt.code}]`);
+
+    if (evt.code !== 'CapsLock' || !capslock) {
+      notHightlightKeys(item)
+    }
+  }
+})
 
 window.addEventListener('load', () => {
   const lang = JSON.parse(localStorage.getItem('lng'));

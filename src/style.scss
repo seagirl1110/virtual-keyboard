@@ -78,15 +78,22 @@ body {
         border: none;
         transition: all 0.3ms;
 
-        // .keybord__key:hover
+        // .keyboard__key:hover
         &:hover {
             background: #4d6398;
             cursor: pointer;
         }
 
-        // .keybord__key--active
+        // .keyboard__key:active
         &:active {
             box-shadow: inset 3px 3px 3px #334266;
+            background: #885588;
+        }
+
+        // .keyboard__key--active
+        &--active {
+            box-shadow: inset 3px 3px 3px #334266;
+            background: #885588;
         }
 
         // .keyboard__key--grow,
