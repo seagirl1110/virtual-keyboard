@@ -1,6 +1,7 @@
-import { capslock } from './print-key';
+import { printKey } from './print-key';
 
-const createKeys = (keysColl, keyboard, lang, cb, upper = capslock) => {
+const createKeys = (keysColl, kb, lang,  upper) => {
+  const keyboard = kb;
   localStorage.setItem('lng', JSON.stringify(lang));
 
   keyboard.innerHTML = '';
@@ -38,7 +39,7 @@ const createKeys = (keysColl, keyboard, lang, cb, upper = capslock) => {
       keyboardLine.append(keyboardKey);
 
       keyboardKey.addEventListener('click', () => {
-        cb(keyboardKey.textContent);
+        printKey(keyboardKey.textContent);
       });
     });
   });

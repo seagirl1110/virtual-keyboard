@@ -2,6 +2,7 @@ import keysColl from './keys';
 import createKeys from './create-keys';
 import { printKey } from './print-key';
 
+let capslock = false;
 let langRus = JSON.parse(localStorage.getItem('lng')) || false;
 
 const { body } = document;
@@ -27,8 +28,6 @@ const keyboard = document.createElement('section');
 keyboard.classList.add('keyboard');
 container.append(keyboard);
 
-createKeys(keysColl, keyboard, langRus, printKey);
-
 const text = document.createElement('div');
 text.classList.add('description');
 text.innerHTML = `<p class="description__text">Клавиатура создана в операционной системе Windows</p>
@@ -38,21 +37,20 @@ container.append(text);
 document.addEventListener('keydown', (evt) => {
   evt.preventDefault();
 
-  if (evt.key === 'Shift' && evt.ctrlKey) {
+  if ((evt.key === 'Shift' && evt.ctrlKey) || (evt.key === 'Control' && evt.shiftKey)) {
     langRus = !langRus;
-    createKeys(keysColl, keyboard, langRus, printKey);
+    createKeys(keysColl, keyboard, langRus, capslock);
   } else {
     const char = evt.key;
-    const isNeedRender = printKey(char);
+    const { isNeedRender, cl } = printKey(display, char, capslock);
+    capslock = cl;
     if (isNeedRender) {
-      createKeys(keysColl, keyboard, langRus, printKey);
+      createKeys(keysColl, keyboard, langRus, capslock);
     }
   }
 });
 
 window.addEventListener('load', () => {
   const lang = JSON.parse(localStorage.getItem('lng'));
-  createKeys(keysColl, keyboard, lang, printKey);
+  createKeys(keysColl, keyboard, lang, capslock);
 });
-
-export { display };

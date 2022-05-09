@@ -1,9 +1,7 @@
-import { display } from './script';
-
-let capslock = false;
-
-const printKey = (char) => {
+const printKey = (d, char, capslock) => {
   let isNeedRender = false;
+  let cl = capslock;
+  const display = d;
 
   switch (char) {
     // case 'Backspace':
@@ -19,7 +17,7 @@ const printKey = (char) => {
       //     break;
 
     case 'CapsLock':
-      capslock = !capslock;
+      cl = !cl;
       isNeedRender = true;
       break;
 
@@ -39,7 +37,7 @@ const printKey = (char) => {
 
     default: display.textContent += char;
   }
-  return isNeedRender;
+  return { isNeedRender, cl };
 };
 
-export { capslock, printKey };
+export { printKey };
