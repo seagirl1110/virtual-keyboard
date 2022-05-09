@@ -233,15 +233,18 @@ const keysColl = [[{
   code: 'BracketLeft',
   value: '[',
   valueRus: 'х',
-  valueUpperRus: 'Х'
+  valueUpperRus: 'Х',
+  valueShift: '{'
 }, {
   code: 'BracketRight',
   value: ']',
   valueRus: 'ъ',
-  valueUpperRus: 'Ъ'
+  valueUpperRus: 'Ъ',
+  valueShift: '}'
 }, {
   code: 'Backslash',
-  value: '\\'
+  value: '\\',
+  valueShift: '|'
 }, {
   code: 'Delete',
   value: 'Del',
@@ -308,12 +311,14 @@ const keysColl = [[{
   code: 'Semicolon',
   value: ';',
   valueRus: 'ж',
-  valueUpperRus: 'Ж'
+  valueUpperRus: 'Ж',
+  valueShift: ':'
 }, {
   code: 'Quote',
   value: "'",
   valueRus: 'э',
-  valueUpperRus: 'Э'
+  valueUpperRus: 'Э',
+  valueShift: '"'
 }, {
   code: 'Enter',
   value: 'Enter',
@@ -368,17 +373,20 @@ const keysColl = [[{
   code: 'Comma',
   value: ',',
   valueRus: 'б',
-  valueUpperRus: 'Б'
+  valueUpperRus: 'Б',
+  valueShift: '<'
 }, {
   code: 'Period',
   value: '.',
   valueRus: 'ю',
-  valueUpperRus: 'Ю'
+  valueUpperRus: 'Ю',
+  valueShift: '>'
 }, {
   code: 'Slash',
   value: '/',
   valueRus: '.',
-  valueUpperRus: '.'
+  valueUpperRus: '.',
+  valueShift: '?'
 }, {
   code: 'ArrowUp',
   value: '▲'
@@ -1163,7 +1171,7 @@ document.addEventListener('keydown', evt => {
     if (evt.key === 'Shift' && evt.ctrlKey || evt.key === 'Control' && evt.shiftKey) {
       langRus = !langRus;
       (0,_create_keys__WEBPACK_IMPORTED_MODULE_2__["default"])(_keys__WEBPACK_IMPORTED_MODULE_1__["default"], keyboard, langRus, capslock, display, shift);
-    } else if (evt.shiftKey) {
+    } else if (evt.key === 'Shift') {
       shift = true;
       (0,_create_keys__WEBPACK_IMPORTED_MODULE_2__["default"])(_keys__WEBPACK_IMPORTED_MODULE_1__["default"], keyboard, langRus, capslock, display, shift);
     } else {
@@ -1188,7 +1196,7 @@ document.addEventListener('keyup', evt => {
       (0,_highlight_keys__WEBPACK_IMPORTED_MODULE_4__.notHightlightKeys)(item);
     }
 
-    if (evt.code === 'Shift') {
+    if (evt.code === 'ShiftLeft' || evt.code === 'ShiftRight') {
       shift = false;
       (0,_create_keys__WEBPACK_IMPORTED_MODULE_2__["default"])(_keys__WEBPACK_IMPORTED_MODULE_1__["default"], keyboard, langRus, capslock, display, shift);
     }
@@ -1202,4 +1210,4 @@ window.addEventListener('load', () => {
 
 /******/ })()
 ;
-//# sourceMappingURL=main.5741d420ce1398717e0a.js.map
+//# sourceMappingURL=main.5b8a4dd7c14968426d82.js.map
