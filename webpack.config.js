@@ -1,26 +1,82 @@
-const path = require('path');
-const webpack = require('webpack');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+
+const mode = process.env.NODE_ENV === 'production' ? 'production' : 'development';
 
 module.exports = {
-  mode: 'development',
-  devServer: {
-    historyApiFallback: true,
-    contentBase: path.resolve(__dirname, './dist'),
-    open: true,
-    compress: true,
-    hot: true,
-    port: 8080,
-  },
+  mode,
   entry: {
-    main: path.resolve(__dirname, './src/script.js'),
+    main: './src/script.js',
+
   },
   output: {
-    path: path.resolve(__dirname, './dist'),
-    filename: '[name].bundle.js',
+    filename: '[name].[contenthash].js',
+    clean: true,
+  },
+  devServer: {
+    open: true,
+    static: {
+      directory: './src',
+      watch: true,
+    },
+  },
+  devtool: 'source-map',
+  optimization: {
+    splitChunks: {
+      chunks: 'all',
+    },
   },
   plugins: [
-    new CleanWebpackPlugin(),
-    new webpack.HotModuleReplacementPlugin(),
-  ],
+    new MiniCssExtractPlugin({
+      filename: '[name].[contenthash].css',
+    }),
+    new HtmlWebpackPlugin({
+      template: './src/index.html',
+    })],
+  module: {
+    rules: [
+      {
+        test: /\.html$/i,
+        loader: 'html-loader',
+      },
+      {
+        test: /\.(sa|sc|c)ss$/,
+        use: [
+          (mode === 'development') ? 'style-loader' : MiniCssExtractPlugin.loader,
+          'css-loader',
+          {
+            loader: 'postcss-loader',
+            options: {
+              postcssOptions: {
+                plugins: [
+                  [
+                    'postcss-preset-env',
+                    {
+                      // Options
+                    },
+                  ],
+                ],
+              },
+            },
+          },
+          'sass-loader',
+        ],
+      },
+      {
+        test: /\.(png|svg|jpg|jpeg|gif)$/i,
+        type: 'asset/resource',
+      },
+      {
+        test: /\.(woff|woff2|eot|ttf|otf)$/i,
+        type: 'asset/resource',
+      },
+      {
+        test: /\.m?js$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader',
+        },
+      },
+    ],
+  },
 };

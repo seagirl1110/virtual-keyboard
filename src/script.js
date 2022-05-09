@@ -1,3 +1,4 @@
+import './style.scss';
 import keysColl from './keys';
 import createKeys from './create-keys';
 import printKey from './print-key';
