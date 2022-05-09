@@ -30,21 +30,45 @@ const createKeys = (keysColl, kb, lang, upper, display, shift) => {
         value
       } = item;
 
-      if (upper && lang) {
-        if (item.valueUpperRus) {
-          value = item.valueUpperRus;
-        }
-      } else if (upper) {
-        if (item.valueUpper) {
-          value = item.valueUpper;
-        }
-      } else if (lang) {
-        if (item.valueRus) {
-          value = item.valueRus;
+      if (!shift) {
+        if (upper && lang) {
+          if (item.valueUpperRus) {
+            value = item.valueUpperRus;
+          }
+        } else if (upper) {
+          if (item.valueUpper) {
+            value = item.valueUpper;
+          }
+        } else if (lang) {
+          if (item.valueRus) {
+            value = item.valueRus;
+          }
         }
       } else if (shift) {
-        if (item.valueShift) {
+        if (upper && lang) {
+          if (item.valueShiftRus) {
+            value = item.valueShiftRus;
+          } else if (item.valueRus) {
+            value = item.valueRus;
+          } else if (item.valueShift) {
+            value = item.valueShift;
+          }
+        } else if (upper) {
+          if (item.valueShift) {
+            value = item.valueShift;
+          }
+        } else if (lang) {
+          if (item.valueShiftRus) {
+            value = item.valueShiftRus;
+          } else if (item.valueUpperRus) {
+            value = item.valueUpperRus;
+          } else if (item.valueShift) {
+            value = item.valueShift;
+          }
+        } else if (item.valueShift) {
           value = item.valueShift;
+        } else if (item.valueUpper) {
+          value = item.valueUpper;
         }
       }
 
@@ -120,15 +144,18 @@ const keysColl = [[{
 }, {
   code: 'Digit2',
   value: 2,
-  valueShift: '@'
+  valueShift: '@',
+  valueShiftRus: '"'
 }, {
   code: 'Digit3',
   value: 3,
-  valueShift: '#'
+  valueShift: '#',
+  valueShiftRus: '№'
 }, {
   code: 'Digit4',
   value: 4,
-  valueShift: '$'
+  valueShift: '$',
+  valueShiftRus: ';'
 }, {
   code: 'Digit5',
   value: 5,
@@ -136,11 +163,13 @@ const keysColl = [[{
 }, {
   code: 'Digit6',
   value: 6,
-  valueShift: '^'
+  valueShift: '^',
+  valueShiftRus: ':'
 }, {
   code: 'Digit7',
   value: 7,
-  valueShift: '&'
+  valueShift: '&',
+  valueShiftRus: '?'
 }, {
   code: 'Digit8',
   value: 8,
@@ -244,7 +273,8 @@ const keysColl = [[{
 }, {
   code: 'Backslash',
   value: '\\',
-  valueShift: '|'
+  valueShift: '|',
+  valueShiftRus: '/'
 }, {
   code: 'Delete',
   value: 'Del',
@@ -386,7 +416,8 @@ const keysColl = [[{
   value: '/',
   valueRus: '.',
   valueUpperRus: '.',
-  valueShift: '?'
+  valueShift: '?',
+  valueShiftRus: ','
 }, {
   code: 'ArrowUp',
   value: '▲'
@@ -1210,4 +1241,4 @@ window.addEventListener('load', () => {
 
 /******/ })()
 ;
-//# sourceMappingURL=main.5b8a4dd7c14968426d82.js.map
+//# sourceMappingURL=main.74d1973154dce338b690.js.map
