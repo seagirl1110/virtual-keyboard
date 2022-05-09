@@ -1,6 +1,6 @@
 import printKey from './print-key';
 
-const createKeys = (keysColl, kb, lang, upper) => {
+const createKeys = (keysColl, kb, lang, upper, display) => {
   const keyboard = kb;
   localStorage.setItem('lng', JSON.stringify(lang));
 
@@ -39,7 +39,7 @@ const createKeys = (keysColl, kb, lang, upper) => {
       keyboardLine.append(keyboardKey);
 
       keyboardKey.addEventListener('click', () => {
-        printKey(keyboardKey.textContent);
+        printKey(display, keyboardKey.textContent, upper);
       });
     });
   });

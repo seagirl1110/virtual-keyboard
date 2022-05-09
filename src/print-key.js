@@ -2,19 +2,29 @@ const printKey = (d, char, capslock) => {
   let isNeedRender = false;
   let cl = capslock;
   const display = d;
+  const start = display.selectionStart;
 
   switch (char) {
-    // case 'Backspace':
-    //     display.textContent = ;
-    //     break
-
-    case 'Tab':
-      display.textContent += '    ';
+    case 'Backspace':
+      if (start > 0) {
+        display.value = display.value.slice(0, start - 1) + display.value.slice(start);
+        display.selectionStart = start - 1;
+        display.selectionEnd = start - 1;
+      }
       break;
 
-      // case 'Delete':
-      //     display.textContent +=;
-      //     break;
+    case 'Tab':
+      display.value += '    ';
+      break;
+
+    case 'Del':
+    case 'Delete':
+      if (start < display.value.length) {
+        display.value = display.value.slice(0, start) + display.value.slice(start + 1);
+        display.selectionStart = start;
+        display.selectionEnd = start;
+      }
+      break;
 
     case 'CapsLock':
       cl = !cl;
@@ -22,11 +32,11 @@ const printKey = (d, char, capslock) => {
       break;
 
     case 'Enter':
-      display.textContent += '\n';
+      display.value += '\n';
       break;
 
-      // case 'Shift':
-      //     break;
+    // case 'Shift':
+    //     break;
 
     case 'Ctrl':
     case 'Control':
@@ -35,7 +45,7 @@ const printKey = (d, char, capslock) => {
     case 'Alt':
       break;
 
-    default: display.textContent += char;
+    default: display.value += char;
   }
   return { isNeedRender, cl };
 };

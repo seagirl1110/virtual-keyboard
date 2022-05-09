@@ -40,18 +40,18 @@ document.addEventListener('keydown', (evt) => {
 
   if ((evt.key === 'Shift' && evt.ctrlKey) || (evt.key === 'Control' && evt.shiftKey)) {
     langRus = !langRus;
-    createKeys(keysColl, keyboard, langRus, capslock);
+    createKeys(keysColl, keyboard, langRus, capslock, display);
   } else {
     const char = evt.key;
     const { isNeedRender, cl } = printKey(display, char, capslock);
     capslock = cl;
     if (isNeedRender) {
-      createKeys(keysColl, keyboard, langRus, capslock);
+      createKeys(keysColl, keyboard, langRus, capslock, display);
     }
   }
 });
 
 window.addEventListener('load', () => {
   const lang = JSON.parse(localStorage.getItem('lng'));
-  createKeys(keysColl, keyboard, lang, capslock);
+  createKeys(keysColl, keyboard, lang, capslock, display);
 });
