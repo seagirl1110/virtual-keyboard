@@ -1123,21 +1123,21 @@ document.addEventListener('keydown', evt => {
       const item = keyboard.querySelector(`[data-code=${evt.code}]`);
       (0,_highlight_keys__WEBPACK_IMPORTED_MODULE_4__.hightlightKeys)(item);
     });
-  }
 
-  if (evt.key === 'Shift' && evt.ctrlKey || evt.key === 'Control' && evt.shiftKey) {
-    langRus = !langRus;
-    (0,_create_keys__WEBPACK_IMPORTED_MODULE_2__["default"])(_keys__WEBPACK_IMPORTED_MODULE_1__["default"], keyboard, langRus, capslock, display);
-  } else {
-    const char = evt.key;
-    const {
-      isNeedRender,
-      cl
-    } = (0,_print_key__WEBPACK_IMPORTED_MODULE_3__["default"])(display, char, capslock);
-    capslock = cl;
-
-    if (isNeedRender) {
+    if (evt.key === 'Shift' && evt.ctrlKey || evt.key === 'Control' && evt.shiftKey) {
+      langRus = !langRus;
       (0,_create_keys__WEBPACK_IMPORTED_MODULE_2__["default"])(_keys__WEBPACK_IMPORTED_MODULE_1__["default"], keyboard, langRus, capslock, display);
+    } else {
+      const char = evt.key;
+      const {
+        isNeedRender,
+        cl
+      } = (0,_print_key__WEBPACK_IMPORTED_MODULE_3__["default"])(display, char, capslock);
+      capslock = cl;
+
+      if (isNeedRender) {
+        (0,_create_keys__WEBPACK_IMPORTED_MODULE_2__["default"])(_keys__WEBPACK_IMPORTED_MODULE_1__["default"], keyboard, langRus, capslock, display);
+      }
     }
   }
 });
@@ -1158,4 +1158,4 @@ window.addEventListener('load', () => {
 
 /******/ })()
 ;
-//# sourceMappingURL=main.b420ce9a94573f30fc4d.js.map
+//# sourceMappingURL=main.193658514446dea85cc5.js.map
