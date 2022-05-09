@@ -15,7 +15,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _print_key__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./print-key */ "./src/print-key.js");
 
 
-const createKeys = (keysColl, kb, lang, upper, display) => {
+const createKeys = (keysColl, kb, lang, upper, display, shift) => {
   const keyboard = kb;
   localStorage.setItem('lng', JSON.stringify(lang));
   keyboard.innerHTML = '';
@@ -42,6 +42,10 @@ const createKeys = (keysColl, kb, lang, upper, display) => {
         if (item.valueRus) {
           value = item.valueRus;
         }
+      } else if (shift) {
+        if (item.valueShift) {
+          value = item.valueShift;
+        }
       }
 
       keyboardKey.textContent = value;
@@ -53,7 +57,14 @@ const createKeys = (keysColl, kb, lang, upper, display) => {
 
       keyboardLine.append(keyboardKey);
       keyboardKey.addEventListener('click', () => {
-        (0,_print_key__WEBPACK_IMPORTED_MODULE_0__["default"])(display, keyboardKey.textContent, upper);
+        const {
+          isNeedRender,
+          cl
+        } = (0,_print_key__WEBPACK_IMPORTED_MODULE_0__["default"])(display, keyboardKey.textContent, upper);
+
+        if (isNeedRender) {
+          createKeys(keysColl, kb, lang, cl, display, shift);
+        }
       });
     });
   });
@@ -100,43 +111,56 @@ const keysColl = [[{
   code: 'Backquote',
   value: '`',
   valueRus: 'ё',
-  valueUpperRus: 'Ё'
+  valueUpperRus: 'Ё',
+  valueShift: '~'
 }, {
   code: 'Digit1',
-  value: 1
+  value: 1,
+  valueShift: '!'
 }, {
   code: 'Digit2',
-  value: 2
+  value: 2,
+  valueShift: '@'
 }, {
   code: 'Digit3',
-  value: 3
+  value: 3,
+  valueShift: '#'
 }, {
   code: 'Digit4',
-  value: 4
+  value: 4,
+  valueShift: '$'
 }, {
   code: 'Digit5',
-  value: 5
+  value: 5,
+  valueShift: '%'
 }, {
   code: 'Digit6',
-  value: 6
+  value: 6,
+  valueShift: '^'
 }, {
   code: 'Digit7',
-  value: 7
+  value: 7,
+  valueShift: '&'
 }, {
   code: 'Digit8',
-  value: 8
+  value: 8,
+  valueShift: '*'
 }, {
   code: 'Digit9',
-  value: 9
+  value: 9,
+  valueShift: '('
 }, {
   code: 'Digit0',
-  value: 0
+  value: 0,
+  valueShift: ')'
 }, {
   code: 'Minus',
-  value: '-'
+  value: '-',
+  valueShift: '_'
 }, {
   code: 'Equal',
-  value: '='
+  value: '=',
+  valueShift: '+'
 }, {
   code: 'Backspace',
   value: 'Backspace',
@@ -1105,6 +1129,7 @@ __webpack_require__.r(__webpack_exports__);
 
 let capslock = false;
 let langRus = JSON.parse(localStorage.getItem('lng')) || false;
+let shift = false;
 const {
   body
 } = document;
@@ -1116,11 +1141,7 @@ const displayWrapper = document.createElement('div');
 displayWrapper.classList.add('display-wrapper');
 container.append(displayWrapper);
 const display = document.createElement('textarea');
-display.classList.add('display'); // display.addEventListener('input', (evt) => {
-//     evt.preventDefault()
-//     console.log(evt)
-// })
-
+display.classList.add('display');
 displayWrapper.append(display);
 const keyboard = document.createElement('section');
 keyboard.classList.add('keyboard');
@@ -1141,7 +1162,10 @@ document.addEventListener('keydown', evt => {
 
     if (evt.key === 'Shift' && evt.ctrlKey || evt.key === 'Control' && evt.shiftKey) {
       langRus = !langRus;
-      (0,_create_keys__WEBPACK_IMPORTED_MODULE_2__["default"])(_keys__WEBPACK_IMPORTED_MODULE_1__["default"], keyboard, langRus, capslock, display);
+      (0,_create_keys__WEBPACK_IMPORTED_MODULE_2__["default"])(_keys__WEBPACK_IMPORTED_MODULE_1__["default"], keyboard, langRus, capslock, display, shift);
+    } else if (evt.shiftKey) {
+      shift = true;
+      (0,_create_keys__WEBPACK_IMPORTED_MODULE_2__["default"])(_keys__WEBPACK_IMPORTED_MODULE_1__["default"], keyboard, langRus, capslock, display, shift);
     } else {
       const char = evt.key;
       const {
@@ -1151,7 +1175,7 @@ document.addEventListener('keydown', evt => {
       capslock = cl;
 
       if (isNeedRender) {
-        (0,_create_keys__WEBPACK_IMPORTED_MODULE_2__["default"])(_keys__WEBPACK_IMPORTED_MODULE_1__["default"], keyboard, langRus, capslock, display);
+        (0,_create_keys__WEBPACK_IMPORTED_MODULE_2__["default"])(_keys__WEBPACK_IMPORTED_MODULE_1__["default"], keyboard, langRus, capslock, display, shift);
       }
     }
   }
@@ -1163,14 +1187,19 @@ document.addEventListener('keyup', evt => {
     if (evt.code !== 'CapsLock' || !capslock) {
       (0,_highlight_keys__WEBPACK_IMPORTED_MODULE_4__.notHightlightKeys)(item);
     }
+
+    if (evt.code === 'Shift') {
+      shift = false;
+      (0,_create_keys__WEBPACK_IMPORTED_MODULE_2__["default"])(_keys__WEBPACK_IMPORTED_MODULE_1__["default"], keyboard, langRus, capslock, display, shift);
+    }
   }
 });
 window.addEventListener('load', () => {
   const lang = JSON.parse(localStorage.getItem('lng'));
-  (0,_create_keys__WEBPACK_IMPORTED_MODULE_2__["default"])(_keys__WEBPACK_IMPORTED_MODULE_1__["default"], keyboard, lang, capslock, display);
+  (0,_create_keys__WEBPACK_IMPORTED_MODULE_2__["default"])(_keys__WEBPACK_IMPORTED_MODULE_1__["default"], keyboard, lang, capslock, display, shift);
 });
 })();
 
 /******/ })()
 ;
-//# sourceMappingURL=main.d950c32eeceaaace0707.js.map
+//# sourceMappingURL=main.5741d420ce1398717e0a.js.map
