@@ -15,7 +15,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _print_key__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./print-key */ "./src/print-key.js");
 
 
-const createKeys = (keysColl, kb, lang, upper) => {
+const createKeys = (keysColl, kb, lang, upper, display) => {
   const keyboard = kb;
   localStorage.setItem('lng', JSON.stringify(lang));
   keyboard.innerHTML = '';
@@ -45,6 +45,7 @@ const createKeys = (keysColl, kb, lang, upper) => {
       }
 
       keyboardKey.textContent = value;
+      keyboardKey.setAttribute('data-code', item.code);
 
       if (item.class) {
         keyboardKey.classList.add(item.class);
@@ -52,13 +53,36 @@ const createKeys = (keysColl, kb, lang, upper) => {
 
       keyboardLine.append(keyboardKey);
       keyboardKey.addEventListener('click', () => {
-        (0,_print_key__WEBPACK_IMPORTED_MODULE_0__["default"])(keyboardKey.textContent);
+        (0,_print_key__WEBPACK_IMPORTED_MODULE_0__["default"])(display, keyboardKey.textContent, upper);
       });
     });
   });
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (createKeys);
+
+/***/ }),
+
+/***/ "./src/highlight-keys.js":
+/*!*******************************!*\
+  !*** ./src/highlight-keys.js ***!
+  \*******************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "hightlightKeys": () => (/* binding */ hightlightKeys),
+/* harmony export */   "notHightlightKeys": () => (/* binding */ notHightlightKeys)
+/* harmony export */ });
+const hightlightKeys = item => {
+  item.classList.add('keyboard__key--active');
+};
+
+const notHightlightKeys = item => {
+  item.classList.remove('keyboard__key--active');
+};
+
+
 
 /***/ }),
 
@@ -78,34 +102,34 @@ const keysColl = [[{
   valueRus: 'ё',
   valueUpperRus: 'Ё'
 }, {
-  code: '1',
+  code: 'Digit1',
   value: 1
 }, {
-  code: '2',
+  code: 'Digit2',
   value: 2
 }, {
-  code: '3',
+  code: 'Digit3',
   value: 3
 }, {
-  code: '4',
+  code: 'Digit4',
   value: 4
 }, {
-  code: '5',
+  code: 'Digit5',
   value: 5
 }, {
-  code: '6',
+  code: 'Digit6',
   value: 6
 }, {
-  code: '7',
+  code: 'Digit7',
   value: 7
 }, {
-  code: '8',
+  code: 'Digit8',
   value: 8
 }, {
-  code: '9',
+  code: 'Digit9',
   value: 9
 }, {
-  code: '0',
+  code: 'Digit0',
   value: 0
 }, {
   code: 'Minus',
@@ -122,61 +146,61 @@ const keysColl = [[{
   value: 'Tab',
   class: 'keyboard__key--grow'
 }, {
-  code: 'q',
+  code: 'KeyQ',
   value: 'q',
   valueUpper: 'Q',
   valueRus: 'й',
   valueUpperRus: 'Й'
 }, {
-  code: 'w',
+  code: 'KeyW',
   value: 'w',
   valueUpper: 'W',
   valueRus: 'ц',
   valueUpperRus: 'Ц'
 }, {
-  code: 'e',
+  code: 'KeyE',
   value: 'e',
   valueUpper: 'E',
   valueRus: 'у',
   valueUpperRus: 'У'
 }, {
-  code: 'r',
+  code: 'KeyR',
   value: 'r',
   valueUpper: 'R',
   valueRus: 'к',
   valueUpperRus: 'К'
 }, {
-  code: 't',
+  code: 'KeyT',
   value: 't',
   valueUpper: 'T',
   valueRus: 'е',
   valueUpperRus: 'Е'
 }, {
-  code: 'y',
+  code: 'KeyY',
   value: 'y',
   valueUpper: 'Y',
   valueRus: 'н',
   valueUpperRus: 'Н'
 }, {
-  code: 'u',
+  code: 'KeyU',
   value: 'u',
   valueUpper: 'U',
   valueRus: 'г',
   valueUpperRus: 'Г'
 }, {
-  code: 'i',
+  code: 'KeyI',
   value: 'i',
   valueUpper: 'I',
   valueRus: 'ш',
   valueUpperRus: 'Ш'
 }, {
-  code: 'o',
+  code: 'KeyO',
   value: 'o',
   valueUpper: 'O',
   valueRus: 'щ',
   valueUpperRus: 'Щ'
 }, {
-  code: 'p',
+  code: 'KeyP',
   value: 'p',
   valueUpper: 'P',
   valueRus: 'з',
@@ -203,55 +227,55 @@ const keysColl = [[{
   value: 'CapsLock',
   class: 'keyboard__key--grow'
 }, {
-  code: 'a',
+  code: 'KeyA',
   value: 'a',
   valueUpper: 'A',
   valueRus: 'ф',
   valueUpperRus: 'Ф'
 }, {
-  code: 's',
+  code: 'KeyS',
   value: 's',
   valueUpper: 'S',
   valueRus: 'ы',
   valueUpperRus: 'Ы'
 }, {
-  code: 'd',
+  code: 'KeyD',
   value: 'd',
   valueUpper: 'D',
   valueRus: 'в',
   valueUpperRus: 'В'
 }, {
-  code: 'f',
+  code: 'KeyF',
   value: 'f',
   valueUpper: 'F',
   valueRus: 'а',
   valueUpperRus: 'А'
 }, {
-  code: 'g',
+  code: 'KeyG',
   value: 'g',
   valueUpper: 'G',
   valueRus: 'п',
   valueUpperRus: 'П'
 }, {
-  code: 'h',
+  code: 'KeyH',
   value: 'h',
   valueUpper: 'H',
   valueRus: 'р',
   valueUpperRus: 'Р'
 }, {
-  code: 'j',
+  code: 'KeyJ',
   value: 'j',
   valueUpper: 'J',
   valueRus: 'о',
   valueUpperRus: 'О'
 }, {
-  code: 'k',
+  code: 'KeyK',
   value: 'k',
   valueUpper: 'K',
   valueRus: 'л',
   valueUpperRus: 'Л'
 }, {
-  code: 'l',
+  code: 'KeyL',
   value: 'l',
   valueUpper: 'L',
   valueRus: 'д',
@@ -275,43 +299,43 @@ const keysColl = [[{
   value: 'Shift',
   class: 'keyboard__key--grow'
 }, {
-  code: 'z',
+  code: 'KeyZ',
   value: 'z',
   valueUpper: 'Z',
   valueRus: 'я',
   valueUpperRus: 'Я'
 }, {
-  code: 'x',
+  code: 'KeyX',
   value: 'x',
   valueUpper: 'X',
   valueRus: 'ч',
   valueUpperRus: 'Ч'
 }, {
-  code: 'c',
+  code: 'KeyC',
   value: 'c',
   valueUpper: 'C',
   valueRus: 'с',
   valueUpperRus: 'С'
 }, {
-  code: 'v',
+  code: 'KeyV',
   value: 'v',
   valueUpper: 'V',
   valueRus: 'м',
   valueUpperRus: 'М'
 }, {
-  code: 'b',
+  code: 'KeyB',
   value: 'b',
   valueUpper: 'B',
   valueRus: 'и',
   valueUpperRus: 'И'
 }, {
-  code: 'n',
+  code: 'KeyN',
   value: 'n',
   valueUpper: 'N',
   valueRus: 'т',
   valueUpperRus: 'Т'
 }, {
-  code: 'm',
+  code: 'KeyM',
   value: 'm',
   valueUpper: 'M',
   valueRus: 'ь',
@@ -343,7 +367,7 @@ const keysColl = [[{
   value: 'Ctrl',
   class: 'keyboard__key--grow'
 }, {
-  code: 'MetaLeft',
+  code: 'MetaRight',
   value: 'Win'
 }, {
   code: 'AltLeft',
@@ -387,17 +411,35 @@ const printKey = (d, char, capslock) => {
   let isNeedRender = false;
   let cl = capslock;
   const display = d;
+  const start = display.selectionStart;
 
   switch (char) {
-    // case 'Backspace':
-    //     display.textContent = ;
-    //     break
-    case 'Tab':
-      display.textContent += '    ';
+    case 'Backspace':
+      display.focus();
+
+      if (start > 0) {
+        display.value = display.value.slice(0, start - 1) + display.value.slice(start);
+        display.selectionStart = start - 1;
+        display.selectionEnd = start - 1;
+      }
+
       break;
-    // case 'Delete':
-    //     display.textContent +=;
-    //     break;
+
+    case 'Tab':
+      display.value += '    ';
+      break;
+
+    case 'Del':
+    case 'Delete':
+      display.focus();
+
+      if (start < display.value.length) {
+        display.value = display.value.slice(0, start) + display.value.slice(start + 1);
+        display.selectionStart = start;
+        display.selectionEnd = start;
+      }
+
+      break;
 
     case 'CapsLock':
       cl = !cl;
@@ -405,7 +447,7 @@ const printKey = (d, char, capslock) => {
       break;
 
     case 'Enter':
-      display.textContent += '\n';
+      display.value += '\n';
       break;
     // case 'Shift':
     //     break;
@@ -414,11 +456,13 @@ const printKey = (d, char, capslock) => {
     case 'Control':
     case 'Win':
     case 'Meta':
+    case 'MetaRight':
     case 'Alt':
+    case 'AltGraph':
       break;
 
     default:
-      display.textContent += char;
+      display.value += char;
   }
 
   return {
@@ -450,7 +494,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "body {\n  margin: 0;\n  width: 100%;\n  font-family: \"Cutive Mono\", monospace;\n  font-size: 18px;\n  line-height: 24px;\n  color: #fff;\n  background-color: #2b3755;\n}\n\n* {\n  box-sizing: border-box;\n}\n\n.container {\n  width: 100%;\n  max-width: 1280px;\n  margin: 0 auto;\n  padding: 0 30px;\n}\n\n.title {\n  text-align: center;\n  font-size: 36px;\n  line-height: 42px;\n  margin: 20px 0;\n}\n\n.display {\n  display: block;\n  width: 100%;\n  height: 40vh;\n  padding: 10px 20px;\n  word-wrap: break-word;\n  border-radius: 5px;\n  background-color: #2b3755;\n  outline: none;\n  color: #fff;\n  font-size: 18px;\n  line-height: 24px;\n}\n.display-wrapper {\n  border-radius: 5px;\n  margin-bottom: 15px;\n  padding: 5px;\n  background: linear-gradient(to bottom, #1a2133, #4d6398);\n}\n\n.keyboard {\n  width: 700px;\n  margin: 0 auto;\n  padding: 5px;\n}\n.keyboard__line {\n  display: flex;\n  justify-content: center;\n  margin: 5px 0;\n}\n.keyboard__key {\n  min-width: 40px;\n  height: 40px;\n  background: linear-gradient(to bottom, #4d6398, #334266);\n  border-radius: 5px;\n  margin: 0 2px;\n  padding: 5px 10px;\n  font-size: 18px;\n  line-height: 24px;\n  color: #fff;\n  outline: none;\n  border: none;\n  transition: all 0.3ms;\n}\n.keyboard__key:hover {\n  background: #4d6398;\n  cursor: pointer;\n}\n.keyboard__key:active {\n  box-shadow: inset 3px 3px 3px #334266;\n}\n.keyboard__key--grow {\n  flex-grow: 1;\n}\n.keyboard__key--space {\n  width: 290px;\n}\n\n.description {\n  text-align: center;\n  margin-top: 20px;\n}\n.description__text {\n  margin: 5px;\n}", "",{"version":3,"sources":["webpack://./src/style.scss"],"names":[],"mappings":"AAAA;EACI,SAAA;EACA,WAAA;EACA,qCAAA;EACA,eAAA;EACA,iBAAA;EACA,WAAA;EACA,yBAAA;AACJ;;AAEA;EACI,sBAAA;AACJ;;AAEA;EACI,WAAA;EACA,iBAAA;EACA,cAAA;EACA,eAAA;AACJ;;AAEA;EACI,kBAAA;EACA,eAAA;EACA,iBAAA;EACA,cAAA;AACJ;;AAEA;EACI,cAAA;EACA,WAAA;EACA,YAAA;EACA,kBAAA;EACA,qBAAA;EACA,kBAAA;EACA,yBAAA;EACA,aAAA;EACA,WAAA;EACA,eAAA;EACA,iBAAA;AACJ;AAGI;EACI,kBAAA;EACA,mBAAA;EACA,YAAA;EACA,wDAAA;AADR;;AAKA;EACI,YAAA;EACA,cAAA;EACA,YAAA;AAFJ;AAMI;EACI,aAAA;EACA,uBAAA;EACA,aAAA;AAJR;AASI;EACI,eAAA;EACA,YAAA;EACA,wDAAA;EACA,kBAAA;EACA,aAAA;EACA,iBAAA;EACA,eAAA;EACA,iBAAA;EACA,WAAA;EACA,aAAA;EACA,YAAA;EACA,qBAAA;AAPR;AAUQ;EACI,mBAAA;EACA,eAAA;AARZ;AAYQ;EACI,qCAAA;AAVZ;AAeQ;EACI,YAAA;AAbZ;AAkBQ;EACI,YAAA;AAhBZ;;AAqBA;EACI,kBAAA;EACA,gBAAA;AAlBJ;AAsBI;EACI,WAAA;AApBR","sourcesContent":["body {\r\n    margin: 0;\r\n    width: 100%;\r\n    font-family: \"Cutive Mono\", monospace;\r\n    font-size: 18px;\r\n    line-height: 24px;\r\n    color: #fff;\r\n    background-color: #2b3755;\r\n}\r\n\r\n* {\r\n    box-sizing: border-box;\r\n}\r\n\r\n.container {\r\n    width: 100%;\r\n    max-width: 1280px;\r\n    margin: 0 auto;\r\n    padding: 0 30px;\r\n}\r\n\r\n.title {\r\n    text-align: center;\r\n    font-size: 36px;\r\n    line-height: 42px;\r\n    margin: 20px 0;\r\n}\r\n\r\n.display {\r\n    display: block;\r\n    width: 100%;\r\n    height: 40vh;\r\n    padding: 10px 20px;\r\n    word-wrap: break-word;\r\n    border-radius: 5px;\r\n    background-color: #2b3755;\r\n    outline: none;\r\n    color: #fff;\r\n    font-size: 18px;\r\n    line-height: 24px;\r\n\r\n    // .display-wrapper\r\n\r\n    &-wrapper {\r\n        border-radius: 5px;\r\n        margin-bottom: 15px;\r\n        padding: 5px;\r\n        background: linear-gradient(to bottom, #1a2133, #4d6398);\r\n    }\r\n}\r\n\r\n.keyboard {\r\n    width: 700px;\r\n    margin: 0 auto;\r\n    padding: 5px;\r\n\r\n    // .keyboard__line\r\n\r\n    &__line {\r\n        display: flex;\r\n        justify-content: center;\r\n        margin: 5px 0;\r\n    }\r\n\r\n    // .keyboard__key\r\n\r\n    &__key {\r\n        min-width: 40px;\r\n        height: 40px;\r\n        background: linear-gradient(to bottom, #4d6398, #334266);\r\n        border-radius: 5px;\r\n        margin: 0 2px;\r\n        padding: 5px 10px;\r\n        font-size: 18px;\r\n        line-height: 24px;\r\n        color: #fff;\r\n        outline: none;\r\n        border: none;\r\n        transition: all 0.3ms;\r\n\r\n        // .keybord__key:hover\r\n        &:hover {\r\n            background: #4d6398;\r\n            cursor: pointer;\r\n        }\r\n\r\n        // .keybord__key:active\r\n        &:active {\r\n            box-shadow: inset 3px 3px 3px #334266;\r\n        }\r\n\r\n        // .keyboard__key--grow,\r\n\r\n        &--grow {\r\n            flex-grow: 1;\r\n        }\r\n\r\n        // .keyboard__key--space\r\n\r\n        &--space {\r\n            width: 290px;\r\n        }\r\n    }\r\n}\r\n\r\n.description {\r\n    text-align: center;\r\n    margin-top: 20px;\r\n\r\n    // .description__text\r\n\r\n    &__text {\r\n        margin: 5px;\r\n    }\r\n}\r\n"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, "body {\n  margin: 0;\n  width: 100%;\n  font-family: \"Cutive Mono\", monospace;\n  font-size: 18px;\n  line-height: 24px;\n  color: #fff;\n  background-color: #2b3755;\n}\n\n* {\n  box-sizing: border-box;\n}\n\n.container {\n  width: 100%;\n  max-width: 1280px;\n  margin: 0 auto;\n  padding: 0 30px;\n}\n\n.title {\n  text-align: center;\n  font-size: 36px;\n  line-height: 42px;\n  margin: 20px 0;\n}\n\n.display {\n  display: block;\n  width: 100%;\n  height: 40vh;\n  padding: 10px 20px;\n  word-wrap: break-word;\n  border-radius: 5px;\n  background-color: #2b3755;\n  outline: none;\n  color: #fff;\n  font-size: 18px;\n  line-height: 24px;\n}\n.display-wrapper {\n  border-radius: 5px;\n  margin-bottom: 15px;\n  padding: 5px;\n  background: linear-gradient(to bottom, #1a2133, #4d6398);\n}\n\n.keyboard {\n  width: 700px;\n  margin: 0 auto;\n  padding: 5px;\n}\n.keyboard__line {\n  display: flex;\n  justify-content: center;\n  margin: 5px 0;\n}\n.keyboard__key {\n  min-width: 40px;\n  height: 40px;\n  background: linear-gradient(to bottom, #4d6398, #334266);\n  border-radius: 5px;\n  margin: 0 2px;\n  padding: 5px 10px;\n  font-size: 18px;\n  line-height: 24px;\n  color: #fff;\n  outline: none;\n  border: none;\n  transition: all 0.3ms;\n}\n.keyboard__key:hover {\n  background: #4d6398;\n  cursor: pointer;\n}\n.keyboard__key:active {\n  box-shadow: inset 3px 3px 3px #334266;\n  background: #885588;\n}\n.keyboard__key--active {\n  box-shadow: inset 3px 3px 3px #334266;\n  background: #885588;\n}\n.keyboard__key--grow {\n  flex-grow: 1;\n}\n.keyboard__key--space {\n  width: 290px;\n}\n\n.description {\n  text-align: center;\n  margin-top: 20px;\n}\n.description__text {\n  margin: 5px;\n}", "",{"version":3,"sources":["webpack://./src/style.scss"],"names":[],"mappings":"AAAA;EACI,SAAA;EACA,WAAA;EACA,qCAAA;EACA,eAAA;EACA,iBAAA;EACA,WAAA;EACA,yBAAA;AACJ;;AAEA;EACI,sBAAA;AACJ;;AAEA;EACI,WAAA;EACA,iBAAA;EACA,cAAA;EACA,eAAA;AACJ;;AAEA;EACI,kBAAA;EACA,eAAA;EACA,iBAAA;EACA,cAAA;AACJ;;AAEA;EACI,cAAA;EACA,WAAA;EACA,YAAA;EACA,kBAAA;EACA,qBAAA;EACA,kBAAA;EACA,yBAAA;EACA,aAAA;EACA,WAAA;EACA,eAAA;EACA,iBAAA;AACJ;AAGI;EACI,kBAAA;EACA,mBAAA;EACA,YAAA;EACA,wDAAA;AADR;;AAKA;EACI,YAAA;EACA,cAAA;EACA,YAAA;AAFJ;AAMI;EACI,aAAA;EACA,uBAAA;EACA,aAAA;AAJR;AASI;EACI,eAAA;EACA,YAAA;EACA,wDAAA;EACA,kBAAA;EACA,aAAA;EACA,iBAAA;EACA,eAAA;EACA,iBAAA;EACA,WAAA;EACA,aAAA;EACA,YAAA;EACA,qBAAA;AAPR;AAUQ;EACI,mBAAA;EACA,eAAA;AARZ;AAYQ;EACI,qCAAA;EACA,mBAAA;AAVZ;AAcQ;EACI,qCAAA;EACA,mBAAA;AAZZ;AAiBQ;EACI,YAAA;AAfZ;AAoBQ;EACI,YAAA;AAlBZ;;AAuBA;EACI,kBAAA;EACA,gBAAA;AApBJ;AAwBI;EACI,WAAA;AAtBR","sourcesContent":["body {\r\n    margin: 0;\r\n    width: 100%;\r\n    font-family: \"Cutive Mono\", monospace;\r\n    font-size: 18px;\r\n    line-height: 24px;\r\n    color: #fff;\r\n    background-color: #2b3755;\r\n}\r\n\r\n* {\r\n    box-sizing: border-box;\r\n}\r\n\r\n.container {\r\n    width: 100%;\r\n    max-width: 1280px;\r\n    margin: 0 auto;\r\n    padding: 0 30px;\r\n}\r\n\r\n.title {\r\n    text-align: center;\r\n    font-size: 36px;\r\n    line-height: 42px;\r\n    margin: 20px 0;\r\n}\r\n\r\n.display {\r\n    display: block;\r\n    width: 100%;\r\n    height: 40vh;\r\n    padding: 10px 20px;\r\n    word-wrap: break-word;\r\n    border-radius: 5px;\r\n    background-color: #2b3755;\r\n    outline: none;\r\n    color: #fff;\r\n    font-size: 18px;\r\n    line-height: 24px;\r\n\r\n    // .display-wrapper\r\n\r\n    &-wrapper {\r\n        border-radius: 5px;\r\n        margin-bottom: 15px;\r\n        padding: 5px;\r\n        background: linear-gradient(to bottom, #1a2133, #4d6398);\r\n    }\r\n}\r\n\r\n.keyboard {\r\n    width: 700px;\r\n    margin: 0 auto;\r\n    padding: 5px;\r\n\r\n    // .keyboard__line\r\n\r\n    &__line {\r\n        display: flex;\r\n        justify-content: center;\r\n        margin: 5px 0;\r\n    }\r\n\r\n    // .keyboard__key\r\n\r\n    &__key {\r\n        min-width: 40px;\r\n        height: 40px;\r\n        background: linear-gradient(to bottom, #4d6398, #334266);\r\n        border-radius: 5px;\r\n        margin: 0 2px;\r\n        padding: 5px 10px;\r\n        font-size: 18px;\r\n        line-height: 24px;\r\n        color: #fff;\r\n        outline: none;\r\n        border: none;\r\n        transition: all 0.3ms;\r\n\r\n        // .keyboard__key:hover\r\n        &:hover {\r\n            background: #4d6398;\r\n            cursor: pointer;\r\n        }\r\n\r\n        // .keyboard__key:active\r\n        &:active {\r\n            box-shadow: inset 3px 3px 3px #334266;\r\n            background: #885588;\r\n        }\r\n\r\n        // .keyboard__key--active\r\n        &--active {\r\n            box-shadow: inset 3px 3px 3px #334266;\r\n            background: #885588;\r\n        }\r\n\r\n        // .keyboard__key--grow,\r\n\r\n        &--grow {\r\n            flex-grow: 1;\r\n        }\r\n\r\n        // .keyboard__key--space\r\n\r\n        &--space {\r\n            width: 290px;\r\n        }\r\n    }\r\n}\r\n\r\n.description {\r\n    text-align: center;\r\n    margin-top: 20px;\r\n\r\n    // .description__text\r\n\r\n    &__text {\r\n        margin: 5px;\r\n    }\r\n}\r\n"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -1038,6 +1082,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _keys__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./keys */ "./src/keys.js");
 /* harmony import */ var _create_keys__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./create-keys */ "./src/create-keys.js");
 /* harmony import */ var _print_key__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./print-key */ "./src/print-key.js");
+/* harmony import */ var _highlight_keys__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./highlight-keys */ "./src/highlight-keys.js");
+
 
 
 
@@ -1072,9 +1118,16 @@ container.append(text);
 document.addEventListener('keydown', evt => {
   evt.preventDefault();
 
+  if (keyboard.querySelector(`[data-code=${evt.code}]`)) {
+    setTimeout(() => {
+      const item = keyboard.querySelector(`[data-code=${evt.code}]`);
+      (0,_highlight_keys__WEBPACK_IMPORTED_MODULE_4__.hightlightKeys)(item);
+    });
+  }
+
   if (evt.key === 'Shift' && evt.ctrlKey || evt.key === 'Control' && evt.shiftKey) {
     langRus = !langRus;
-    (0,_create_keys__WEBPACK_IMPORTED_MODULE_2__["default"])(_keys__WEBPACK_IMPORTED_MODULE_1__["default"], keyboard, langRus, capslock);
+    (0,_create_keys__WEBPACK_IMPORTED_MODULE_2__["default"])(_keys__WEBPACK_IMPORTED_MODULE_1__["default"], keyboard, langRus, capslock, display);
   } else {
     const char = evt.key;
     const {
@@ -1084,16 +1137,25 @@ document.addEventListener('keydown', evt => {
     capslock = cl;
 
     if (isNeedRender) {
-      (0,_create_keys__WEBPACK_IMPORTED_MODULE_2__["default"])(_keys__WEBPACK_IMPORTED_MODULE_1__["default"], keyboard, langRus, capslock);
+      (0,_create_keys__WEBPACK_IMPORTED_MODULE_2__["default"])(_keys__WEBPACK_IMPORTED_MODULE_1__["default"], keyboard, langRus, capslock, display);
+    }
+  }
+});
+document.addEventListener('keyup', evt => {
+  if (keyboard.querySelector(`[data-code=${evt.code}]`)) {
+    const item = keyboard.querySelector(`[data-code=${evt.code}]`);
+
+    if (evt.code !== 'CapsLock' || !capslock) {
+      (0,_highlight_keys__WEBPACK_IMPORTED_MODULE_4__.notHightlightKeys)(item);
     }
   }
 });
 window.addEventListener('load', () => {
   const lang = JSON.parse(localStorage.getItem('lng'));
-  (0,_create_keys__WEBPACK_IMPORTED_MODULE_2__["default"])(_keys__WEBPACK_IMPORTED_MODULE_1__["default"], keyboard, lang, capslock);
+  (0,_create_keys__WEBPACK_IMPORTED_MODULE_2__["default"])(_keys__WEBPACK_IMPORTED_MODULE_1__["default"], keyboard, lang, capslock, display);
 });
 })();
 
 /******/ })()
 ;
-//# sourceMappingURL=main.ae3c43b37aa1b4b67e46.js.map
+//# sourceMappingURL=main.b420ce9a94573f30fc4d.js.map
