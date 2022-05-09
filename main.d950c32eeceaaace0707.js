@@ -449,9 +449,24 @@ const printKey = (d, char, capslock) => {
     case 'Enter':
       display.value += '\n';
       break;
-    // case 'Shift':
-    //     break;
 
+    case 'ArrowLeft':
+      display.value += '◄';
+      break;
+
+    case 'ArrowRight':
+      display.value += '►';
+      break;
+
+    case 'ArrowUp':
+      display.value += '▲';
+      break;
+
+    case 'ArrowDown':
+      display.value += '▼';
+      break;
+
+    case 'Shift':
     case 'Ctrl':
     case 'Control':
     case 'Win':
@@ -1158,4 +1173,4 @@ window.addEventListener('load', () => {
 
 /******/ })()
 ;
-//# sourceMappingURL=main.193658514446dea85cc5.js.map
+//# sourceMappingURL=main.d950c32eeceaaace0707.js.map
