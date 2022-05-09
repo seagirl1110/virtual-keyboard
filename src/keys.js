@@ -50,12 +50,12 @@ const keysColl = [
       code: 'KeyP', value: 'p', valueUpper: 'P', valueRus: 'з', valueUpperRus: 'З',
     },
     {
-      code: 'BracketLeft', value: '[', valueRus: 'х', valueUpperRus: 'Х',
+      code: 'BracketLeft', value: '[', valueRus: 'х', valueUpperRus: 'Х', valueShift: '{',
     },
     {
-      code: 'BracketRight', value: ']', valueRus: 'ъ', valueUpperRus: 'Ъ',
+      code: 'BracketRight', value: ']', valueRus: 'ъ', valueUpperRus: 'Ъ', valueShift: '}',
     },
-    { code: 'Backslash', value: '\\' },
+    { code: 'Backslash', value: '\\', valueShift: '|' },
     { code: 'Delete', value: 'Del', class: 'keyboard__key--grow' },
   ],
   [
@@ -88,10 +88,10 @@ const keysColl = [
       code: 'KeyL', value: 'l', valueUpper: 'L', valueRus: 'д', valueUpperRus: 'Д',
     },
     {
-      code: 'Semicolon', value: ';', valueRus: 'ж', valueUpperRus: 'Ж',
+      code: 'Semicolon', value: ';', valueRus: 'ж', valueUpperRus: 'Ж', valueShift: ':',
     },
     {
-      code: 'Quote', value: "'", valueRus: 'э', valueUpperRus: 'Э',
+      code: 'Quote', value: "'", valueRus: 'э', valueUpperRus: 'Э', valueShift: '"',
     },
     { code: 'Enter', value: 'Enter', class: 'keyboard__key--grow' },
   ],
@@ -119,13 +119,13 @@ const keysColl = [
       code: 'KeyM', value: 'm', valueUpper: 'M', valueRus: 'ь', valueUpperRus: 'Ь',
     },
     {
-      code: 'Comma', value: ',', valueRus: 'б', valueUpperRus: 'Б',
+      code: 'Comma', value: ',', valueRus: 'б', valueUpperRus: 'Б', valueShift: '<',
     },
     {
-      code: 'Period', value: '.', valueRus: 'ю', valueUpperRus: 'Ю',
+      code: 'Period', value: '.', valueRus: 'ю', valueUpperRus: 'Ю', valueShift: '>',
     },
     {
-      code: 'Slash', value: '/', valueRus: '.', valueUpperRus: '.',
+      code: 'Slash', value: '/', valueRus: '.', valueUpperRus: '.', valueShift: '?',
     },
     { code: 'ArrowUp', value: '▲' },
     { code: 'ShiftRight', value: 'Shift', class: 'keyboard__key--grow' },

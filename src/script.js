@@ -45,7 +45,7 @@ document.addEventListener('keydown', (evt) => {
     if ((evt.key === 'Shift' && evt.ctrlKey) || (evt.key === 'Control' && evt.shiftKey)) {
       langRus = !langRus;
       createKeys(keysColl, keyboard, langRus, capslock, display, shift);
-    } else if (evt.shiftKey) {
+    } else if (evt.key === 'Shift') {
       shift = true;
       createKeys(keysColl, keyboard, langRus, capslock, display, shift);
     } else {
@@ -67,7 +67,7 @@ document.addEventListener('keyup', (evt) => {
       notHightlightKeys(item);
     }
 
-    if (evt.code === 'Shift') {
+    if (evt.code === 'ShiftLeft' || evt.code === 'ShiftRight') {
       shift = false;
       createKeys(keysColl, keyboard, langRus, capslock, display, shift);
     }
