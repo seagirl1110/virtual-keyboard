@@ -3,7 +3,6 @@ const printKey = (d, char, capslock) => {
   let cl = capslock;
   const display = d;
   const start = display.selectionStart;
-
   switch (char) {
     case 'Backspace':
       display.focus();
@@ -37,9 +36,23 @@ const printKey = (d, char, capslock) => {
       display.value += '\n';
       break;
 
-      // case 'Shift':
-      //     break;
+    case 'ArrowLeft':
+      display.value += '◄';
+      break;
 
+    case 'ArrowRight':
+      display.value += '►';
+      break;
+
+    case 'ArrowUp':
+      display.value += '▲';
+      break;
+
+    case 'ArrowDown':
+      display.value += '▼';
+      break;
+
+    case 'Shift':
     case 'Ctrl':
     case 'Control':
     case 'Win':
