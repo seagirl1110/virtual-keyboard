@@ -37,8 +37,8 @@ const printKey = (d, char, capslock) => {
       display.value += '\n';
       break;
 
-    // case 'Shift':
-    //     break;
+      // case 'Shift':
+      //     break;
 
     case 'Ctrl':
     case 'Control':

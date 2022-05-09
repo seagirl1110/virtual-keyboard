@@ -31,7 +31,7 @@ const createKeys = (keysColl, kb, lang, upper, display) => {
       }
 
       keyboardKey.textContent = value;
-      keyboardKey.setAttribute('data-code', item.code)
+      keyboardKey.setAttribute('data-code', item.code);
 
       if (item.class) {
         keyboardKey.classList.add(item.class);

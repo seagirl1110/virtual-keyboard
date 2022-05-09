@@ -1,9 +1,9 @@
 const hightlightKeys = (item) => {
-    item.classList.add('keyboard__key--active')
-}
+  item.classList.add('keyboard__key--active');
+};
 
 const notHightlightKeys = (item) => {
-    item.classList.remove('keyboard__key--active')
-}
+  item.classList.remove('keyboard__key--active');
+};
 
-export  {hightlightKeys, notHightlightKeys};
+export { hightlightKeys, notHightlightKeys };

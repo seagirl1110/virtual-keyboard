@@ -43,18 +43,18 @@ document.addEventListener('keydown', (evt) => {
     setTimeout(() => {
       const item = keyboard.querySelector(`[data-code=${evt.code}]`);
       hightlightKeys(item);
-    })
-  }
+    });
 
-  if ((evt.key === 'Shift' && evt.ctrlKey) || (evt.key === 'Control' && evt.shiftKey)) {
-    langRus = !langRus;
-    createKeys(keysColl, keyboard, langRus, capslock, display);
-  } else {
-    const char = evt.key;
-    const { isNeedRender, cl } = printKey(display, char, capslock);
-    capslock = cl;
-    if (isNeedRender) {
+    if ((evt.key === 'Shift' && evt.ctrlKey) || (evt.key === 'Control' && evt.shiftKey)) {
+      langRus = !langRus;
       createKeys(keysColl, keyboard, langRus, capslock, display);
+    } else {
+      const char = evt.key;
+      const { isNeedRender, cl } = printKey(display, char, capslock);
+      capslock = cl;
+      if (isNeedRender) {
+        createKeys(keysColl, keyboard, langRus, capslock, display);
+      }
     }
   }
 });
@@ -64,10 +64,10 @@ document.addEventListener('keyup', (evt) => {
     const item = keyboard.querySelector(`[data-code=${evt.code}]`);
 
     if (evt.code !== 'CapsLock' || !capslock) {
-      notHightlightKeys(item)
+      notHightlightKeys(item);
     }
   }
-})
+});
 
 window.addEventListener('load', () => {
   const lang = JSON.parse(localStorage.getItem('lng'));
