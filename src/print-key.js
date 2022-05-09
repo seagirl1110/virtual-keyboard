@@ -1,9 +1,10 @@
 import { display } from './script';
-import createKeys from './create-keys';
 
 let capslock = false;
 
-const print = (char) => {
+const printKey = (char) => {
+  let isNeedRender = false;
+
   switch (char) {
     // case 'Backspace':
     //     display.textContent = ;
@@ -13,21 +14,21 @@ const print = (char) => {
       display.textContent += '    ';
       break;
 
-    // case 'Delete':
-    //     display.textContent +=;
-    //     break;
+      // case 'Delete':
+      //     display.textContent +=;
+      //     break;
 
     case 'CapsLock':
       capslock = !capslock;
-      createKeys();
+      isNeedRender = true;
       break;
 
     case 'Enter':
       display.textContent += '\n';
       break;
 
-    // case 'Shift':
-    //     break;
+      // case 'Shift':
+      //     break;
 
     case 'Ctrl':
     case 'Control':
@@ -38,6 +39,7 @@ const print = (char) => {
 
     default: display.textContent += char;
   }
+  return isNeedRender;
 };
 
-export { capslock, print };
+export { capslock, printKey };

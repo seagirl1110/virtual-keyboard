@@ -1,5 +1,6 @@
+import keysColl from './keys';
 import createKeys from './create-keys';
-import { print } from './print';
+import { printKey } from './print-key';
 
 let langRus = JSON.parse(localStorage.getItem('lng')) || false;
 
@@ -26,7 +27,7 @@ const keyboard = document.createElement('section');
 keyboard.classList.add('keyboard');
 container.append(keyboard);
 
-createKeys();
+createKeys(keysColl, keyboard, langRus, printKey);
 
 const text = document.createElement('div');
 text.classList.add('description');
@@ -36,16 +37,22 @@ container.append(text);
 
 document.addEventListener('keydown', (evt) => {
   evt.preventDefault();
-  console.log(evt);
-  console.log(evt.code);
 
   if (evt.key === 'Shift' && evt.ctrlKey) {
     langRus = !langRus;
-    createKeys();
+    createKeys(keysColl, keyboard, langRus, printKey);
   } else {
     const char = evt.key;
-    print(char);
+    const isNeedRender = printKey(char);
+    if (isNeedRender) {
+      createKeys(keysColl, keyboard, langRus, printKey);
+    }
   }
 });
 
-export { display, keyboard, langRus };
+window.addEventListener('load', () => {
+  const lang = JSON.parse(localStorage.getItem('lng'));
+  createKeys(keysColl, keyboard, lang, printKey);
+});
+
+export { display };

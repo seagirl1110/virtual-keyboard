@@ -1,18 +1,16 @@
-import keysColl from './keys';
-import { keyboard, langRus } from './script';
-import { capslock, print } from './print';
+import { capslock } from './print-key';
 
-const createKeys = (lang = langRus, upper = capslock) => {
+const createKeys = (keysColl, keyboard, lang, cb, upper = capslock) => {
   localStorage.setItem('lng', JSON.stringify(lang));
 
   keyboard.innerHTML = '';
 
-  for (const line of keysColl) {
+  keysColl.forEach((line) => {
     const keyboardLine = document.createElement('div');
     keyboardLine.classList.add('keyboard__line');
     keyboard.append(keyboardLine);
 
-    for (const item of line) {
+    line.forEach((item) => {
       const keyboardKey = document.createElement('button');
       keyboardKey.classList.add('keyboard__key');
       let { value } = item;
@@ -40,15 +38,10 @@ const createKeys = (lang = langRus, upper = capslock) => {
       keyboardLine.append(keyboardKey);
 
       keyboardKey.addEventListener('click', () => {
-        print(keyboardKey.textContent);
+        cb(keyboardKey.textContent);
       });
-    }
-  }
+    });
+  });
 };
-
-window.addEventListener('load', () => {
-  const lang = JSON.parse(localStorage.getItem('lng'));
-  createKeys(lang);
-});
 
 export default createKeys;
