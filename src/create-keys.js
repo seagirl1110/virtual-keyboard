@@ -1,6 +1,6 @@
-import { printKey } from './print-key';
+import printKey from './print-key';
 
-const createKeys = (keysColl, kb, lang,  upper) => {
+const createKeys = (keysColl, kb, lang, upper) => {
   const keyboard = kb;
   localStorage.setItem('lng', JSON.stringify(lang));
 

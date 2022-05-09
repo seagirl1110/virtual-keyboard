@@ -1,6 +1,6 @@
 import keysColl from './keys';
 import createKeys from './create-keys';
-import { printKey } from './print-key';
+import printKey from './print-key';
 
 let capslock = false;
 let langRus = JSON.parse(localStorage.getItem('lng')) || false;

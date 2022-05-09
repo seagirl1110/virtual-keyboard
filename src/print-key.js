@@ -40,4 +40,4 @@ const printKey = (d, char, capslock) => {
   return { isNeedRender, cl };
 };
 
-export { printKey };
+export default printKey;
