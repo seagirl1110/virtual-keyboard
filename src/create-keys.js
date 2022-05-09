@@ -15,22 +15,45 @@ const createKeys = (keysColl, kb, lang, upper, display, shift) => {
       const keyboardKey = document.createElement('button');
       keyboardKey.classList.add('keyboard__key');
       let { value } = item;
-
-      if (upper && lang) {
-        if (item.valueUpperRus) {
-          value = item.valueUpperRus;
-        }
-      } else if (upper) {
-        if (item.valueUpper) {
-          value = item.valueUpper;
-        }
-      } else if (lang) {
-        if (item.valueRus) {
-          value = item.valueRus;
+      if (!shift) {
+        if (upper && lang) {
+          if (item.valueUpperRus) {
+            value = item.valueUpperRus;
+          }
+        } else if (upper) {
+          if (item.valueUpper) {
+            value = item.valueUpper;
+          }
+        } else if (lang) {
+          if (item.valueRus) {
+            value = item.valueRus;
+          }
         }
       } else if (shift) {
-        if (item.valueShift) {
+        if (upper && lang) {
+          if (item.valueShiftRus) {
+            value = item.valueShiftRus;
+          } else if (item.valueRus) {
+            value = item.valueRus;
+          } else if (item.valueShift) {
+            value = item.valueShift;
+          }
+        } else if (upper) {
+          if (item.valueShift) {
+            value = item.valueShift;
+          }
+        } else if (lang) {
+          if (item.valueShiftRus) {
+            value = item.valueShiftRus;
+          } else if (item.valueUpperRus) {
+            value = item.valueUpperRus;
+          } else if (item.valueShift) {
+            value = item.valueShift;
+          }
+        } else if (item.valueShift) {
           value = item.valueShift;
+        } else if (item.valueUpper) {
+          value = item.valueUpper;
         }
       }
 

@@ -4,12 +4,22 @@ const keysColl = [
       code: 'Backquote', value: '`', valueRus: 'ё', valueUpperRus: 'Ё', valueShift: '~',
     },
     { code: 'Digit1', value: 1, valueShift: '!' },
-    { code: 'Digit2', value: 2, valueShift: '@' },
-    { code: 'Digit3', value: 3, valueShift: '#' },
-    { code: 'Digit4', value: 4, valueShift: '$' },
+    {
+      code: 'Digit2', value: 2, valueShift: '@', valueShiftRus: '"',
+    },
+    {
+      code: 'Digit3', value: 3, valueShift: '#', valueShiftRus: '№',
+    },
+    {
+      code: 'Digit4', value: 4, valueShift: '$', valueShiftRus: ';',
+    },
     { code: 'Digit5', value: 5, valueShift: '%' },
-    { code: 'Digit6', value: 6, valueShift: '^' },
-    { code: 'Digit7', value: 7, valueShift: '&' },
+    {
+      code: 'Digit6', value: 6, valueShift: '^', valueShiftRus: ':',
+    },
+    {
+      code: 'Digit7', value: 7, valueShift: '&', valueShiftRus: '?',
+    },
     { code: 'Digit8', value: 8, valueShift: '*' },
     { code: 'Digit9', value: 9, valueShift: '(' },
     { code: 'Digit0', value: 0, valueShift: ')' },
@@ -55,7 +65,9 @@ const keysColl = [
     {
       code: 'BracketRight', value: ']', valueRus: 'ъ', valueUpperRus: 'Ъ', valueShift: '}',
     },
-    { code: 'Backslash', value: '\\', valueShift: '|' },
+    {
+      code: 'Backslash', value: '\\', valueShift: '|', valueShiftRus: '/',
+    },
     { code: 'Delete', value: 'Del', class: 'keyboard__key--grow' },
   ],
   [
@@ -125,7 +137,7 @@ const keysColl = [
       code: 'Period', value: '.', valueRus: 'ю', valueUpperRus: 'Ю', valueShift: '>',
     },
     {
-      code: 'Slash', value: '/', valueRus: '.', valueUpperRus: '.', valueShift: '?',
+      code: 'Slash', value: '/', valueRus: '.', valueUpperRus: '.', valueShift: '?', valueShiftRus: ',',
     },
     { code: 'ArrowUp', value: '▲' },
     { code: 'ShiftRight', value: 'Shift', class: 'keyboard__key--grow' },
